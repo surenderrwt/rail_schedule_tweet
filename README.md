@@ -1,24 +1,15 @@
-# README
+echo "# rail_schedule_tweet" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/surenderrwt/rail_schedule_tweet.git
+git push -u origin master
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+…or push an existing repository from the command line
 
-Things you may want to cover:
+git remote add origin https://github.com/surenderrwt/rail_schedule_tweet.git
+git push -u origin master
 
-* Ruby version
+…or import code from another repository
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
