@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root 'page#index'
   devise_for :users
   resources :roles
-  get '/auth/:provider/callback', to: 'sessions#create'
+  get 'oauth/request' =>	 'session#new'
+  match '/oauth/callback' => 'session#create', via: [:get, :post]
+  # get '/auth/:provider/callback', to: 'sessions#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

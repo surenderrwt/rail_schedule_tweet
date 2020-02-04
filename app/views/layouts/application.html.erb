@@ -20,8 +20,11 @@
        <p class="alert"><%= alert %></p>
 
     <%= yield %>
-    <li><%= link_to 'Log in Twitter', '/auth/twitter' %></li>
+    <br />
+      <%= link_to "Login with twitter", "oauth/request" %>
     <hr/>
     <%= debug(current_user) %>
+
   </body>
 </html>
+

@@ -26,10 +26,10 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
-    @user.tweets.build = Tweet.new(tweet_params)
+    @tweet = current_user.tweets.build(tweet_params)
 
     respond_to do |format|
-      if @user.tweets.save
+      if @tweet.save
         format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
         format.json { render :show, status: :created, location: @tweet }
       else
@@ -69,13 +69,11 @@ class TweetsController < ApplicationController
       @tweet = Tweet.find(params[:id])
     end
 
-    def set_tweet
-      @user = current_user
-    end
+
 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tweet_params
-      params.require(:tweet).permit(:tweet_content, :send_at, :user_id)
+      params.require(:tweet).permit(:content, :send_at)
     end
 end

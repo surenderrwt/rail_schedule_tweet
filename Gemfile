@@ -32,9 +32,11 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
-gem 'omniauth-twitter'
+
 # gem 'signet', '~> 0.12.0'
-# gem 'twitter'
+gem 'twitter'
+# gem 'twitter_oauth'
+gem 'oauth'
 gem 'devise'
 gem 'cancancan'
 gem 'whenever', require: false

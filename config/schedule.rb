@@ -1,3 +1,3 @@
 every 1.minute do 
-  runner "User.send_tweets"
+  rake "instweet:post_tweet", :environment => 'development' 
  end
