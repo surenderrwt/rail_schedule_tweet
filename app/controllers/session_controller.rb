@@ -24,7 +24,8 @@ class SessionController < ApplicationController
 		@access_token = request_token.get_access_token(oauth_verifier: params[:oauth_verifier]) 
 		puts @access_token.inspect
 		if current_user.update(access_token: @access_token.token, access_token_secret: @access_token.secret)
-   			redirect_to controller: "tweets", action: "new", notice: 'successfully saved.'
+   			flash[:notice] = "User successfully created"
+   			redirect_to controller: "page", action: "index"
    		else
    			redirect_to action: "new", notice: 'failure.'
    		end
