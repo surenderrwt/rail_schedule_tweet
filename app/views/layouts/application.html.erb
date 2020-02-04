@@ -4,27 +4,23 @@
     <title>Instweet</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
     <%= link_to "home", root_path %>
+     <%= link_to "create tweet", new_tweet_path %>
     <%= link_to "register", new_user_registration_path %>
-     <%= link_to "signin", new_user_session_path %>
+    <%= link_to "signin", new_user_session_path %>
     <%= link_to "logout", destroy_user_session_path, method: :delete %>
-
-     <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
     <br />
       <%= link_to "Login with twitter", "oauth/request" %>
     <hr/>
     <%= debug(current_user) %>
-
   </body>
 </html>
 

@@ -5,12 +5,11 @@ namespace :instweet do
 	task :post_tweet => :environment do 
 		puts remaining_tweets = Tweet.where("send_at < ? and tweeted = ?", Time.now, false)
 		puts remaining_tweets.inspect
-
+		
 		remaining_tweets.each do |tweet|
-
 			client = Twitter::REST::Client.new do |config|
-			  config.consumer_key        = "vvFwBLPsGQLkpIVrjeL7yz6gP"
-			  config.consumer_secret     = "HbX8R07dhvEnEVozF7pd0TGDIwsEU4nPaXk5MLRA431bpREfYC"
+			  config.consumer_key        = TWITTER_API_KEY
+			  config.consumer_secret     = TWITTER_API_SECRECT
 			  config.access_token        = tweet.user.access_token
 			  config.access_token_secret = tweet.user.access_token_secret
 			end

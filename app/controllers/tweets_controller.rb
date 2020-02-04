@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :have_twitter_account_setup
 
   # GET /tweets
   # GET /tweets.json
@@ -69,8 +70,11 @@ class TweetsController < ApplicationController
       @tweet = Tweet.find(params[:id])
     end
 
-
-
+    def have_twitter_account_setup
+        if current_user.access_token.nil?
+          redirect_to oauth_request_path
+        end
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tweet_params

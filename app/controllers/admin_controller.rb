@@ -1,10 +1,9 @@
 class AdminController < ApplicationController
 	before_action :set_user, except:[:users]
 	before_action :authenticate_user!
+  
   def users
   	@users = User.where(["role_id = ?", 1])
-  
-
   end
 
   def edit

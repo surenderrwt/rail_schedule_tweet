@@ -10,8 +10,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
   	if current_user.activate == false
-  		# destroy_user_session_path(current_user)
-  		# sign_out current_user
   		session.delete(current_user)
   		flash[:notice] = " Your account is not activated"
   		admin_users_path
@@ -23,5 +21,4 @@ class ApplicationController < ActionController::Base
 	  	end
 	  end
 	end
-
 end
