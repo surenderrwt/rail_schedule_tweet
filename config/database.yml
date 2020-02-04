@@ -17,9 +17,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: xawldtkvubicwf
-  password: bb18acc8d4429cb44fd79e6706d55e2340ad3efe5f75dc753fce892794240cec
-  host: ec2-184-72-236-57.compute-1.amazonaws.com
+  username: postgres
+  password: 12345
+  host: localhost
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -83,5 +83,6 @@ test:
 #
 production:
   <<: *default
-  database: daput5ijvbg0gl
+  database: instweet_production
+  username: instweet
   password: <%= ENV['INSTWEET_DATABASE_PASSWORD'] %>

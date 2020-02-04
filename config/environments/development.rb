@@ -65,7 +65,7 @@ end
 TWITTER_API_KEY = "vvFwBLPsGQLkpIVrjeL7yz6gP"
 TWITTER_API_SECRECT = "HbX8R07dhvEnEVozF7pd0TGDIwsEU4nPaXk5MLRA431bpREfYC"
 
-CALLBACK_URL = "http://localhost:3001/oauth/callback"
+CALLBACK_URL = "https://instweet.herokuapp.com/oauth/callback"
 OAUTH_CONSUMER = OAuth::Consumer.new(TWITTER_API_KEY, TWITTER_API_SECRECT, :site => "https://twitter.com")
 
 # @@callback_url = "http://localhost:3001/oauth/callback"

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_02_03_232112) do
   enable_extension "plpgsql"
 
   create_table "roles", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", default: "1", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
