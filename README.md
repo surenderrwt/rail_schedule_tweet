@@ -1,3 +1,10 @@
+Online Demo:- https://instweet.herokuapp.com
+Admin details :admin@admin.com
+p: 123456
+
+user_detail - rawat.surender87@gmail.com
+p :123546
+
 echo "# rail_schedule_tweet" >> README.md
 git init
 git add README.md
@@ -46,4 +53,7 @@ Existing Git repository
 For existing repositories, simply add the heroku remote
 
 $ heroku git:remote -a instweet
+
+
+
 
