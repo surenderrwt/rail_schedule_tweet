@@ -1,7 +1,6 @@
 <h1>Welocome to Instant Twitter App</h1>
 <p>This is Home page</p>
 <br />
-<% unless current_user.access_token.nil? %>
+<% if current_user.access_token.nil? %>
 	<%= link_to "Login with twitter", "oauth/request" %>
 <%end%>
-
