@@ -3,14 +3,14 @@ class TweetsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :have_twitter_account_setup
 
-  	# GET /tweets
-  	# GET /tweets.json
-  	def index
-  		@tweets = current_user.tweets
-    	#@friends = CLIENT.friends(@surenderrwt, count: 3)
-    end
+	# GET /tweets
+	# GET /tweets.json
+	def index
+		@tweets = current_user.tweets
+		#@friends = CLIENT.friends(@surenderrwt, count: 3)
+	end
 
-  	# GET /tweets/1
+	# GET /tweets/1
 	# GET /tweets/1.json
 	def show
 	end
@@ -63,21 +63,21 @@ class TweetsController < ApplicationController
 			format.json { head :no_content }
 		end
 	end
-
+	
 	private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
-    	@tweet = Tweet.find(params[:id])
-    end
+	# Use callbacks to share common setup or constraints between actions.
+	def set_tweet
+		@tweet = Tweet.find(params[:id])
+	end
 
-    def have_twitter_account_setup
-    	if current_user.access_token.nil?
-    		redirect_to oauth_request_path
-    	end
-    end
+	def have_twitter_account_setup
+		if current_user.access_token.nil?
+			redirect_to oauth_request_path
+		end
+	end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def tweet_params
-    	params.require(:tweet).permit(:content, :send_at)
-    end
+	# Never trust parameters from the scary internet, only allow the white list through.
+	def tweet_params
+		params.require(:tweet).permit(:content, :send_at)
+	end
 end
