@@ -10,10 +10,15 @@ class SessionController < ApplicationController
 	OAUTH_CONSUMER = OAuth::Consumer.new(TWITTER_API_KEY, TWITTER_API_SECRECT, :site => "https://twitter.com")
 
   	def new
-  		puts request_token = OAUTH_CONSUMER.get_request_token(:oauth_callback => CALLBACK_URL)
-  		puts session[:token] = request_token.token
-		puts session[:token_secret] = request_token.secret
-		redirect_to request_token.authorize_url(:oauth_callback => CALLBACK_URL)
+  		  if current_user.access_token.nil?
+     		puts request_token = OAUTH_CONSUMER.get_request_token(:oauth_callback => CALLBACK_URL)
+	  		puts session[:token] = request_token.token
+			puts session[:token_secret] = request_token.secret
+			redirect_to request_token.authorize_url(:oauth_callback => CALLBACK_URL)
+     	else
+     		flash[:notice] = "you have already authorized"
+      		redirect_to controller: "tweets", action: "index"
+    	end
    	end
 
     def create

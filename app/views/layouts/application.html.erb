@@ -19,9 +19,9 @@
     <%= yield %>
     <% if current_user.access_token.nil? %>
       <h3>Disconnected</h3>
-      <% else %>
+    <% else %>
       <h3> Connected </h3>
-      <%end%>
+    <%end%>
     <hr/>
     <%= debug(current_user) %>
   </body>
