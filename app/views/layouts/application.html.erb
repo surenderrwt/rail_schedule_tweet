@@ -10,18 +10,16 @@
 
   <body>
     <%= link_to "home", root_path %>
-     <%= link_to "create tweet", new_tweet_path %>
+    <%= link_to "create tweet", new_tweet_path %>
     <%= link_to "register", new_user_registration_path %>
     <%= link_to "signin", new_user_session_path %>
     <%= link_to "logout", destroy_user_session_path, method: :delete %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
-    <% if current_user.access_token.nil? %>
-      <h3>Disconnected</h3>
-    <% else %>
-      <h3> Connected </h3>
-    <%end%>
+    <%= twitter_authenticate_status %>
+    <%= link_to_twitter_authenticate %>
+    
     <hr/>
     <%= debug(current_user) %>
   </body>
