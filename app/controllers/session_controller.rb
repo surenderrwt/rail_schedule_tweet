@@ -48,6 +48,8 @@ class SessionController < ApplicationController
 
 			if client.update(tweet.content)
 				puts tweet.update(tweeted: true)
+				flash[:notice] = "Successfully posted " 
+				redirect_to controller: "page", action: "index"
 			else
 				flash[:notice] = "Please authorize app " 
 				redirect_to controller: "page", action: "index"
