@@ -21,4 +21,11 @@ class ApplicationController < ActionController::Base
 			end
 		end
 	end
+
+	def authenticated_admin_only
+		if current_user.role_id == 1
+			flash[:notice] = "unauthorized request " 
+			redirect_to controller: "page", action: "index"
+		end
+	end
 end
