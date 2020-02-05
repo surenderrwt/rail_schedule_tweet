@@ -61,7 +61,6 @@ class SessionController < ApplicationController
 				flash[:notice] = "Please authorize app " 
 				redirect_to controller: "page", action: "index"
 			end
-
 		end
 	end
 

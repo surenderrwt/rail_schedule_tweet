@@ -27,7 +27,8 @@ class TweetsController < ApplicationController
 	# POST /tweets
 	# POST /tweets.json
 	def create
-		if params[:tweet][:post_now] == 1
+		puts params[:post_now]
+		if params[:post_now] == 1
 			client = Twitter::REST::Client.new do |config|
 				config.consumer_key        = TWITTER_API_KEY
 				config.consumer_secret     = TWITTER_API_SECRECT
@@ -37,9 +38,9 @@ class TweetsController < ApplicationController
 			client.update(params[:tweet][:content])
 		end
 
-		tweet_time = t = DateTime.new(params[:tweet]["send_at(1i)"].to_i,params[:tweet]["send_at(2i)"].to_i, params[:tweet]["send_at(3i)"].to_i, params[:tweet]["send_at(4i)"].to_i,params[:tweet]["send_at(5i)"].to_i)
+		# tweet_time = t = DateTime.new(params[:tweet]["send_at(1i)"].to_i,psssarams[:tweet]["send_at(2i)"].to_i, params[:tweet]["send_at(3i)"].to_i, params[:tweet]["send_at(4i)"].to_i,params[:tweet]["send_at(5i)"].to_i)
 
-		@tweet = current_user.tweets.build(content: params[:tweet][:content], send_at: tweet_time )
+		@tweet = current_user.tweets.build(tweet_params)
 		respond_to do |format|
 			if @tweet.save
 				format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
@@ -89,6 +90,11 @@ class TweetsController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def tweet_params
-		params.require(:tweet).permit(:content,:post_now, :send_at)
+		params.require(:tweet).permit(:content, :send_at)
+	end
+
+	def send_now_params
+		params.permit(:post_now)
+
 	end
 end
