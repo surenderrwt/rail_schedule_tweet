@@ -10,14 +10,14 @@ class ApplicationController < ActionController::Base
 
 	def after_sign_in_path_for(resource)
 		if current_user.activate == false
-			session.delete(current_user)
-			flash[:notice] = " Your account is not activated"
-			admin_users_path
+			reset_session
+			flash[:notice] = " Your account is not activated, Let admin verify account"
+			root_path
 		else
 			if current_user.role.id == 2
 				admin_users_path
 			else
-				tweets_path
+				root_path
 			end
 		end
 	end

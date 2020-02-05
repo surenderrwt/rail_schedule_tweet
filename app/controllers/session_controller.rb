@@ -29,30 +29,30 @@ class SessionController < ApplicationController
 		if current_user.update(access_token: @access_token.token, access_token_secret: @access_token.secret)
 			flash[:notice] = "User successfully created"
 			redirect_to controller: "page", action: "index"
-		else
+		else	
 			redirect_to action: "new", notice: 'failure.'
 		end
 	end
 
 	def post_tweets
-		if current_user
-			puts remaining_tweets = Tweet.where("send_at < ? and User_id = ? and tweeted = ? ", Time.now, current_user, false)
-			puts remaining_tweets.inspect
-			
-			remaining_tweets.each do |tweet|
-				client = Twitter::REST::Client.new do |config|
-				  config.consumer_key        = TWITTER_API_KEY
-				  config.consumer_secret     = TWITTER_API_SECRECT
-				  config.access_token        = current_user.access_token
-				  config.access_token_secret = current_user.access_token_secret
-				end
-				if client.update(tweet.content)
-					puts tweet.update(tweeted: true)
-				end
+		puts remaining_tweets = Tweet.where("send_at < ? and User_id = ? and tweeted = ? ", Time.now, current_user, false)
+		puts remaining_tweets.inspect
+
+		remaining_tweets.each do |tweet|
+			client = Twitter::REST::Client.new do |config|
+				config.consumer_key        = TWITTER_API_KEY
+				config.consumer_secret     = TWITTER_API_SECRECT
+				config.access_token        = current_user.access_token
+				config.access_token_secret = current_user.access_token_secret
 			end
-		else
-			flash[:notice] = "Please authorize app " 
-			redirect_to controller: "page", action: "index"
+
+			if client.update(tweet.content)
+				puts tweet.update(tweeted: true)
+			else
+				flash[:notice] = "Please authorize app " 
+				redirect_to controller: "page", action: "index"
+			end
+
 		end
 	end
 
