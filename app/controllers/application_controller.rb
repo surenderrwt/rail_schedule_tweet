@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
 		if current_user.activate == false
 			reset_session
-			flash[:notice] = " Your account is not activated, Let admin verify account"
+			flash[:notice] = "Please come back, once your account is approved Sorry for your inconvenience."
 			root_path
 		else
 			if current_user.role.id == 2

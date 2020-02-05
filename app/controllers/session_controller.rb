@@ -30,8 +30,15 @@ class SessionController < ApplicationController
 			flash[:notice] = "User successfully created"
 			redirect_to controller: "page", action: "index"
 		else	
-			redirect_to action: "new", notice: 'failure.'
+			flash[:notice] = "user cancel authorization" 
+			redirect_to controller: "page", action: "index"
 		end
+
+		if params[:denied]
+			flash[:notice] = "user cancel authorization" 
+			redirect_to controller: "page", action: "index"
+		end
+
 	end
 
 	def post_tweets

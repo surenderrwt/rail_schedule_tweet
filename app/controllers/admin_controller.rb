@@ -5,6 +5,9 @@ class AdminController < ApplicationController
 
 	def users
 		@users = User.where(["role_id = ?", 1])
+		if current_user.is_admin?(current_user)
+			flash[:notice] = "Welcome admin"
+		end 
 	end
 
 	def edit
@@ -24,12 +27,4 @@ class AdminController < ApplicationController
 		params.require(:user).permit(:email, :activate)
 	end
 
-	private
-
-	def authenticated_admin_only
-		if current_user.role_id == 1
-			flash[:notice] = "unauthorized request " 
-			redirect_to controller: "page", action: "index"
-		end
-	end
 end
