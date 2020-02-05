@@ -59,9 +59,11 @@ class SessionController < ApplicationController
 				redirect_to controller: "page", action: "index"
 			else
 				flash[:notice] = "Please authorize app " 
-				redirect_to controller: "page", action: "index"
+				redirect_to controller: "tweet", action: "index"
 			end
 		end
+		flash[:notice] = "Nothing to update" 
+		redirect_to controller: "tweets", action: "index"
 	end
 
 	def logout

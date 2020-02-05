@@ -3,6 +3,9 @@ class TweetsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :have_twitter_account_setup
 
+	TWITTER_API_KEY = "vvFwBLPsGQLkpIVrjeL7yz6gP"
+	TWITTER_API_SECRECT = "HbX8R07dhvEnEVozF7pd0TGDIwsEU4nPaXk5MLRA431bpREfYC"
+
 	# GET /tweets
 	# GET /tweets.json
 	def index
@@ -28,21 +31,24 @@ class TweetsController < ApplicationController
 	# POST /tweets.json
 	def create
 		puts params[:post_now]
-		if params[:post_now] == 1
+		if params[:post_now] == "1"
 			client = Twitter::REST::Client.new do |config|
 				config.consumer_key        = TWITTER_API_KEY
 				config.consumer_secret     = TWITTER_API_SECRECT
 				config.access_token        = current_user.access_token
 				config.access_token_secret = current_user.access_token_secret
 			end
-			client.update(params[:tweet][:content])
+			content = params[:tweet][:content]
 		end
-
-		# tweet_time = t = DateTime.new(params[:tweet]["send_at(1i)"].to_i,psssarams[:tweet]["send_at(2i)"].to_i, params[:tweet]["send_at(3i)"].to_i, params[:tweet]["send_at(4i)"].to_i,params[:tweet]["send_at(5i)"].to_i)
-
 		@tweet = current_user.tweets.build(tweet_params)
 		respond_to do |format|
 			if @tweet.save
+				if client.update("#{content}")
+					puts @tweet.update(tweeted: true)
+					flash[:notice] = "Successfully posted " 
+				else
+					flash[:notice] = "not updated " 
+				end
 				format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
 				format.json { render :show, status: :created, location: @tweet }
 			else
