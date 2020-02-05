@@ -1,6 +1,6 @@
 class SessionController < ApplicationController
 	before_action :authenticate_user!
-	# @@callback_url = "http://localhost:3001/oauth/callback"
+	# @@callback_url = "http://localhost:3001/oauth/callback" https://instweet.herokuapp.com/oauth/callback
 	# @@oauth_consumer = OAuth::Consumer.new("vvFwBLPsGQLkpIVrjeL7yz6gP", "HbX8R07dhvEnEVozF7pd0TGDIwsEU4nPaXk5MLRA431bpREfYC", :site => "https://twitter.com")
 	TWITTER_API_KEY = "vvFwBLPsGQLkpIVrjeL7yz6gP"
 	TWITTER_API_SECRECT = "HbX8R07dhvEnEVozF7pd0TGDIwsEU4nPaXk5MLRA431bpREfYC"
@@ -27,7 +27,7 @@ class SessionController < ApplicationController
 		@access_token = request_token.get_access_token(oauth_verifier: params[:oauth_verifier]) 
 		puts @access_token.inspect
 		if current_user.update(access_token: @access_token.token, access_token_secret: @access_token.secret)
-			flash[:notice] = "User successfully created"
+			flash[:notice] = "User successfully authorized"
 			redirect_to controller: "page", action: "index"
 		else	
 			flash[:notice] = "user cancel authorization" 
