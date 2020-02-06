@@ -8,7 +8,9 @@ ActiveAdmin.register Tweet do
   # permit_params :content, :send_at, :user_id, :tweeted
   #
   # or
-  
+
+  menu priority: 3
+
   permit_params do
     permitted = [:content, :send_at, :user_id, :tweeted]
     permitted << :other if params[:action] == 'create' && current_user.admin?
