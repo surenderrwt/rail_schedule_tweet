@@ -33,6 +33,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
+# Active admin for adminstrator
+gem 'activeadmin'
 # gem 'signet', '~> 0.12.0'
 gem 'twitter'
 # gem 'twitter_oauth'
