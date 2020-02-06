@@ -17,26 +17,7 @@
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<%= link_to "home", root_path, class: "nav-link #{active_class(root_path)}"  %>
-				</li>
-				<li class="nav-item">
-					<%= link_to "create tweet", new_tweet_path, class: "nav-link #{active_class(new_tweet_path)}" %>
-				</li>
-				<li class="nav-item ">
-					<%= link_to "register", new_user_registration_path, class: "nav-link #{active_class(new_user_registration_path)}" %>
-				</li>
-				<li class="nav-item">
-					<%= link_to "signin", new_user_session_path, class: "nav-link #{active_class(new_user_session_path)}" %>
-				</li>
-			</ul>
-		</div>
-		<div class="form-inline my-2 my-lg-0">
-			<%= button_to "logout", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-		</div>
+		<%= user_navigation %>
 	</nav>
 
 	<div class="row">
@@ -46,7 +27,12 @@
 			</div>
 			<div class="alert alert-light text-center">
 				<%= twitter_authenticate_status %>
-					<%= link_to_twitter_authenticate %>
+				<%= link_to_twitter_authenticate %>
+					<% if current_user %>
+						<% if current_user.access_token %>
+							<%=link_to "Post tweets manually", post_tweet_path %>
+						<% end %>
+					<% end %>
 			</div>
 		</div>
 	</div>
@@ -56,8 +42,6 @@
 			<div class="col">
 				<div class="">
 					<%= yield %>
-					<%= twitter_authenticate_status %>
-					<%= link_to_twitter_authenticate %>
 				</div>
 			</div>			
 		</div>

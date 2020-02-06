@@ -42,7 +42,7 @@ class SessionController < ApplicationController
 	end
 
 	def post_tweets
-		puts remaining_tweets = Tweet.where("send_at < ? and User_id = ? and tweeted = ? ", Time.now, current_user, false)
+		puts remaining_tweets = current_user.tweets.get_tweets_without_user_id
 		puts remaining_tweets.inspect
 
 		remaining_tweets.each do |tweet|

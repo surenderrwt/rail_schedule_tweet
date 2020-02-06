@@ -3,7 +3,8 @@ require 'active_record'
 namespace :instweet do
 	desc "to send instent tweets"
 	task :post_tweet => :environment do 
-		puts remaining_tweets = Tweet.where("send_at < ? and tweeted = ?", Time.now, false)
+		# puts remaining_tweets = Tweet.where("send_at < ? and tweeted = ?", Time.now, false)
+		remaining_tweets = Tweet.get_tweets_without_user_id
 		puts remaining_tweets.inspect
 		
 		remaining_tweets.each do |tweet|

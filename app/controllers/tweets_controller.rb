@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
 	before_action :set_tweet, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!
-	before_action :have_twitter_account_setup
+	before_action :have_twitter_account_setup, except: [:index]
 
 	TWITTER_API_KEY = "vvFwBLPsGQLkpIVrjeL7yz6gP"
 	TWITTER_API_SECRECT = "HbX8R07dhvEnEVozF7pd0TGDIwsEU4nPaXk5MLRA431bpREfYC"
@@ -9,7 +9,11 @@ class TweetsController < ApplicationController
 	# GET /tweets
 	# GET /tweets.json
 	def index
-		@tweets = current_user.tweets
+		if current_user.is_admin?(current_user)
+			@tweets = Tweet.all
+		else
+			@tweets = current_user.tweets
+		end
 		#@friends = CLIENT.friends(@surenderrwt, count: 3)
 	end
 
@@ -89,7 +93,7 @@ class TweetsController < ApplicationController
 	end
 
 	def have_twitter_account_setup
-		if current_user.access_token.nil?
+		if current_user.access_token.nil? and current_user.is_admin?(current_user)
 			redirect_to oauth_request_path
 		end
 	end
