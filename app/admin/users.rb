@@ -56,7 +56,7 @@ ActiveAdmin.register User do
 
 
   	permit_params do
-  		permitted = [:email,:encrypted_password, :role_id, :activate, :access_token, :access_token_secret, :full_name]
+  		permitted = [:email, :role_id, :activate, :access_token, :access_token_secret, :full_name]
   		permitted << :other if params[:action] == 'create' && current_user.admin?
   		permitted
   	end
