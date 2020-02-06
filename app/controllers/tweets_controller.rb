@@ -9,12 +9,7 @@ class TweetsController < ApplicationController
 	# GET /tweets
 	# GET /tweets.json
 	def index
-		if current_user.is_admin?(current_user)
-			@tweets = Tweet.all
-		else
-			@tweets = current_user.tweets
-		end
-		#@friends = CLIENT.friends(@surenderrwt, count: 3)
+		@tweets = current_user.tweets
 	end
 
 	# GET /tweets/1
@@ -93,7 +88,7 @@ class TweetsController < ApplicationController
 	end
 
 	def have_twitter_account_setup
-		if current_user.access_token.nil? and current_user.is_admin?(current_user)
+		if current_user.access_token.nil?
 			redirect_to oauth_request_path
 		end
 	end

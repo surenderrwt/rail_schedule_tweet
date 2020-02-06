@@ -1,6 +1,6 @@
 class SessionController < ApplicationController
 	before_action :authenticate_user!
-	# @@callback_url = "http://localhost:3001/oauth/callback" https://instweet.herokuapp.com/oauth/callback
+	# @@callback_url = "http://localhost:3000/oauth/callback" https://instweet.herokuapp.com/oauth/callback
 	# @@oauth_consumer = OAuth::Consumer.new("vvFwBLPsGQLkpIVrjeL7yz6gP", "HbX8R07dhvEnEVozF7pd0TGDIwsEU4nPaXk5MLRA431bpREfYC", :site => "https://twitter.com")
 	TWITTER_API_KEY = "vvFwBLPsGQLkpIVrjeL7yz6gP"
 	TWITTER_API_SECRECT = "HbX8R07dhvEnEVozF7pd0TGDIwsEU4nPaXk5MLRA431bpREfYC"

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   resources :tweets
   get 'admin/users' => 'admin#users'
   get 'admin/user/:id/edit' => 'admin#edit', as: :edit_user
