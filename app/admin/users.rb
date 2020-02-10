@@ -13,17 +13,15 @@ ActiveAdmin.register User do
 
   	member_action :activate, method: :get do
   		resource.update(activate: true)
-  		redirect_to admin_users_path, notice: "User Activated!"
+  		redirect_to admin_users_path, notice: "User activated!"
   	end
 
   	member_action :deactivate, method: :get do
-  		puts no_of_admins = User.where("role_id = ? and activate = ?", 2, true).count
-  		if resource.role_id == 2 && no_of_admins <= 1
-  			redirect_to admin_users_path, notice: "Cannot Deactivate last Admin"
-  		else
-  			resource.update(activate: false)
+  		if resource.update(activate: false)
   			redirect_to admin_users_path, notice: "User deactivated!"
-  		end
+	  	else
+	  		redirect_to admin_users_path, notice: "You cannot deactivate last admin :("
+	  	end
   	end
 
   	action_item :revoke, only: :show do
@@ -39,7 +37,7 @@ ActiveAdmin.register User do
   		id_column
   		column :full_name
   		column :email
-  		column :role_id
+  		column :role
   		column :activate
   		column :access_token
   		column :access_token_secret

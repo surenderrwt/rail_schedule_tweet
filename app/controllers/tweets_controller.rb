@@ -15,6 +15,7 @@ class TweetsController < ApplicationController
 	# GET /tweets/1
 	# GET /tweets/1.json
 	def show
+			puts current_user.is_admin?
 	end
 
 	# GET /tweets/new
