@@ -7,35 +7,33 @@ Background:
 	Given I am at user registration page
 
 @javascript
-	
 
-	Scenario Outline:  User validation page check 
- 	When I fill "<field_name>" field with "<value>"	
- 	And click submit button
- 	Then I Should see "<error_mesg>" message 
+Scenario Outline:  User validation page check 
+	When I fill "<field_name>" field with "<value>"	
+	And click submit button
+	Then I Should see "<error_mesg>" message 
 
- 	Scenarios: if empty inputs
+Scenarios: if empty inputs
 	|	field_name					|	value						|	error_mesg							|
 	| 	user_email 					| 								|	Email can't be blank 				|
 	| 	user_email 					| 	rawat.surender87@gmail.com	|	Email has already been taken 		|
 	| 	user_email 					| 	@!23@testefasdfaest.com		|	Email is invalid					|
 
-	Scenarios: if empty password
+Scenarios: if empty password
 	|	field_name					|	value						|	error_mesg										|
 	| 	user_password				|								|	Password can't be blank							|
 	| 	user_password				|	1234						|	Password is too short (minimum is 6 characters)	|
 	|	user_password_confirmation	|	123457						|	Password confirmation doesn't match Password	|
 
 
-
-	Scenario: full form submission
- 	When I fill field with data
+Scenario: full form submission
+	When I fill field with data
 	| 	user_email 					| 	test@test.com 					|	
 	| 	user_password				|		1234						|	
 	|	user_password_confirmation	|		1234						|													
 
- 	And click submit button
+	And click submit button
 
- 	Then I Should see error message 
- 	|	error_mesg										|
+	Then I Should see error message 
+	|	error_mesg										|
 	|	Password is too short (minimum is 6 characters)	|
