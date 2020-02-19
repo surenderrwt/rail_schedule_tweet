@@ -13,7 +13,7 @@ Scenario Outline:  User validation page check
 	And click submit button
 	Then I Should see "<error_mesg>" message 
 
-Scenarios: if empty inputs
+Scenarios: if empty user_email
 	|	field_name					|	value						|	error_mesg							|
 	| 	user_email 					| 								|	Email can't be blank 				|
 	| 	user_email 					| 	rawat.surender87@gmail.com	|	Email has already been taken 		|
@@ -26,7 +26,7 @@ Scenarios: if empty password
 	|	user_password_confirmation	|	123457						|	Password confirmation doesn't match Password	|
 
 
-Scenario: full form submission
+Scenario: in case full form submission
 	When I fill field with data
 	| 	user_email 					| 	test@test.com 					|	
 	| 	user_password				|		1234						|	
