@@ -33,6 +33,9 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
+
+gem 'faker', '~> 2.10', '>= 2.10.1'
+
 # Active admin for adminstrator
 gem 'activeadmin'
 # gem 'signet', '~> 0.12.0'
@@ -45,6 +48,7 @@ gem 'whenever', require: false
 
 
 group :development do
+  gem 'rspec-rails'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -54,11 +58,16 @@ group :development do
 end
 
 group :test do
+
+  gem 'rspec-rails'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'cucumber-rails', require: false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

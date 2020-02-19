@@ -26,9 +26,9 @@ ActiveAdmin.register User do
 
   	action_item :revoke, only: :show do
   		if user.activate? 
-  			link_to 'Deactivate', deactivate_admin_user_path(user), method: :get 
+  			link_to 'Deactivate', deactivate_admin_user_path(user), method: :get,id: "user_deactivate", class: "user_deactivate"
   		else
-  			link_to 'Activate', activate_admin_user_path(user), method: :get
+  			link_to 'Activate', activate_admin_user_path(user), method: :get, id: "user_activate", class: "user_activate"
   		end
   	end
 
@@ -45,9 +45,9 @@ ActiveAdmin.register User do
   		column :updated_at
   		actions { |user| 
   			if user.activate? 
-  				link_to 'Deactivate', deactivate_admin_user_path(user), method: :get 
+  				link_to 'Deactivate', deactivate_admin_user_path(user), method: :get, id: "user_#{user.id}_deactivate", class: "user_deactivate"
   			else
-  				link_to 'Activate', activate_admin_user_path(user), method: :get
+  				link_to 'Activate', activate_admin_user_path(user), method: :get, id: "user_#{user.id}_activate", class: "user_activate"
   			end  
   		} 
   	end

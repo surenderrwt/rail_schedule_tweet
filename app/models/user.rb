@@ -3,8 +3,9 @@ class User < ApplicationRecord
 	# :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 	devise :database_authenticatable, :registerable,
 	:recoverable, :rememberable, :validatable
-	belongs_to :role
+	# belongs_to :role, validate: false
 	has_many :tweets
+	validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
 
 	before_validation :in_case_of_last_admin
 
